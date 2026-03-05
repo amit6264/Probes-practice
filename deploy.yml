@@ -14,11 +14,10 @@ spec:
     spec:
       containers:
         - name: python-app
-          image: <your-dockerhub>/python-probes-demo:1.0
+          image: REPLACE_ME_IMAGE
           ports:
             - containerPort: 8080
 
-          # Startup probe: checks if app is initialized
           startupProbe:
             httpGet:
               path: /ready
@@ -26,7 +25,6 @@ spec:
             failureThreshold: 10
             periodSeconds: 5
 
-          # Liveness probe: checks if app is alive
           livenessProbe:
             httpGet:
               path: /healthz
@@ -35,7 +33,6 @@ spec:
             periodSeconds: 10
             failureThreshold: 3
 
-          # Readiness probe: checks if app is ready for traffic
           readinessProbe:
             httpGet:
               path: /ready
